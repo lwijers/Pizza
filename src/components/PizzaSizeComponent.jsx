@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ToppingsComponent extends Component {
+class PizzaSizeComponent extends Component {
   render() {
     return (
       <div className="pickToppings">
@@ -16,4 +16,4 @@ class ToppingsComponent extends Component {
     );
   }
 }
-export default ToppingsComponent;
+export default PizzaSizeComponent;

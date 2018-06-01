@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class SauceComponent extends Component {
+class ToppingsComponent extends Component {
   render() {
     return (
       <div className="pickToppings">
@@ -16,4 +16,4 @@ class SauceComponent extends Component {
     );
   }
 }
-export default SauceComponent;
+export default ToppingsComponent;
