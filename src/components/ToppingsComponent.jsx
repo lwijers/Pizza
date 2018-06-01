@@ -1,19 +1,58 @@
 import React, { Component } from 'react';
 
-class ToppingsComponent extends Component {
+class SauceComponent extends Component {
+    constructor() {
+        super()
+        let count=0
+    }
+
+    keepCount= ()=> {
+        // if (checked) {
+        this.props.count += 1    
+        console.log(this.counter)
+        // }
+    }
+
+
   render() {
     return (
       <div className="pickToppings">
-        <p>Please select topping</p>
-        <select name="cars">
-            <option value="WhiteSauce ">White sauce + € 0,- </option>
-            <option value="RedSauce">Red sauce + € 0,</option>
-            <option value="DoubleRedSauce">Double red sauce + € 1,-</option>
-            <option value="MixItUp">Mix it up + € 1,50 </option>
-        </select>
+        <p>Please select (a max of 3) toppings, + € 0.50 per topping</p>
+        
+        <div>
+            <input type="checkbox" className="dog" 
+                onClick={this.keepCount}/> <a>Pineapple</a>
+        </div>
+        <div>
+            <input type="checkbox" className="dog" 
+                onClick="KeepCount()"/> Corn
+        </div>
+        <div>
+            <input type="checkbox" className="dog" 
+                onClick="return KeepCount()"/> Olives (Green)
+        </div>
 
+        <div>
+            <input type="checkbox" className="dog" 
+                onClick="return KeepCount()"/> Red Onion    
+        </div>
+
+        <div>
+            <input type="checkbox" className="dog" 
+                onClick="return KeepCount()"/> Spinach
+        </div>
+
+        <div>
+            <input type="checkbox" className="dog" 
+                onClick="return KeepCount()"/> Cherry Tomatoes  
+        </div>
+        
+        <div>
+            <input type="checkbox" className="dog" 
+                onClick="return KeepCount()"/> Chicken
+        </div>
        </div>
     );
   }
 }
-export default ToppingsComponent;
+export default SauceComponent;
