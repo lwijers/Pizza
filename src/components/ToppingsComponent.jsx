@@ -1,57 +1,45 @@
 import React, { Component } from 'react';
 
 class SauceComponent extends Component {
-    constructor() {
-        super()
-        let count=0
-    }
-
-    keepCount= ()=> {
-        // if (checked) {
-        this.props.count += 1    
-        console.log(this.counter)
-        // }
-    }
-
+    constructor(props) {
+        super(props);
+        this.state = {value1:"",value2:"",value3:""};
+    
+        this.handleChange = this.handleChange.bind(this);
+        }
+    
+      handleChange(event) {
+        this.setState({value: event.target.value});
+      }
+      
 
   render() {
+
+    const toppings = [  
+        'Pineapple', 'Corn', 
+        'Olives (green)', 'Red Onion',
+        'Spinach', 'Cherry tomatoes',
+        'Chicken'
+    ]
+
+    const dropdownContent = toppings.map((topping) => 
+        <option value={topping}>{topping}</option>);
+
     return (
-      <div className="pickToppings">
-        <p>Please select (a max of 3) toppings, + € 0.50 per topping</p>
-        
-        <div>
-            <input type="checkbox" className="dog" 
-                onClick={this.keepCount}/> <a>Pineapple</a>
-        </div>
-        <div>
-            <input type="checkbox" className="dog" 
-                onClick="KeepCount()"/> Corn
-        </div>
-        <div>
-            <input type="checkbox" className="dog" 
-                onClick="return KeepCount()"/> Olives (Green)
-        </div>
-
-        <div>
-            <input type="checkbox" className="dog" 
-                onClick="return KeepCount()"/> Red Onion    
-        </div>
-
-        <div>
-            <input type="checkbox" className="dog" 
-                onClick="return KeepCount()"/> Spinach
-        </div>
-
-        <div>
-            <input type="checkbox" className="dog" 
-                onClick="return KeepCount()"/> Cherry Tomatoes  
-        </div>
-        
-        <div>
-            <input type="checkbox" className="dog" 
-                onClick="return KeepCount()"/> Chicken
-        </div>
-       </div>
+        <form onSubmit={this.handleSubmit}>
+            <label>
+                Pick your favorite toppings (0.50 per topping):
+                <select value1={this.state.value} onChange={this.handleChange}>
+                   {dropdownContent}
+                </select>
+                <select value2={this.state.value} onChange={this.handleChange}>
+                   {dropdownContent}
+                </select>
+                <select value3={this.state.value} onChange={this.handleChange}>
+                   {dropdownContent}
+                </select>
+            </label>
+      </form>
     );
   }
 }
