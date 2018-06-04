@@ -15,7 +15,7 @@ export default function(state, {type, payload}) {
 
   default:
     return {
-      basePrice : 0,
+      basePrice : 645,
       saucePrice : 0,
       toppingsPrice : 0,
       drone : false,

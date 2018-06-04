@@ -51,29 +51,42 @@ class ToppingsComponent extends Component {
     }
 
   handleChange(event) {
+      // keep track of which selections are made
       this.manageSelection(event.target.id)
+      // set the state of the buttons so the buttons get updated
       this.setState({isDisabled : this.maxSelectionReached()})
       console.log(this.state.isDisabled)
-      this.setState({selectedItemPrice: toppings.price})
-      store.dispatch(toppingsPrice({saucePrice: toppings.price}))
 
+      this.setState({
+        selectedItemPrice:
+          toppings.price * this.selectedToppings.length
+        }
+      )
+      console.log(toppings.price * this.selectedToppings.length);
+      store.dispatch(toppingsPrice(
+        {toppingsPrice: toppings.price * this.selectedToppings.length}
+      )
+    )
   }
 
   render() {
     return (
         <div className="toppings"><h3>Choose your toppings</h3>
-        { toppings.choices.map((topping) =>
-          <div className="topping">
-            <input
-                type="checkbox"
-                id={ topping }
-                disabled={this.state.isDisabled}
-                onChange = {this.handleChange.bind(this)}
-            />
-            { topping }
-            <span>  &euro; { eurofied(toppings.price) }</span>
+          {toppings.choices.map((topping) =>
+            <div className="topping">
+              <input
+                  type="checkbox"
+                  id={ topping }
+                  disabled={this.state.isDisabled}
+                  onChange = {this.handleChange.bind(this)}
+              />
+              { topping }
+              <span>  &euro; { eurofied(toppings.price) }</span>
+            </div>
+          )}
+          <div className="subtotal">
+            price of selected item: {eurofied(this.state.selectedItemPrice)}
           </div>
-        )}
         </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, setState } from 'react';
 import {eurofied} from '../globals'
 import store from '../store'
 import { saucePrice } from '../actions/index'
