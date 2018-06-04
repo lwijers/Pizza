@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { eurofied } from '../globals'
 
-class ToppingsComponent extends Component {
+class PriceComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   render() {
-    return (
-      <div className="pickToppings">
-        <p>select pizza size</p>
-        <select name="cars">
-            <option value="20cm ">20cm NY Style € 6,45</option>
-            <option value="25cm">25cm NY Style € 8,99</option>
-            <option value="30cm">30cm NY Style € 11,49</option>
-            <option value="35cm">35cm NY Style € 13,49</option>
-        </select>
 
-       </div>
+    return (
+      <div className="price">
+        <p>your current Price = &euro;{eurofied(this.props.price)}</p>
+      </div>
     );
   }
 }
-export default ToppingsComponent;
+
+const mapStateToProps = (state) => {
+  return {price : state.priceReducer}
+}
+
+export default connect(mapStateToProps)(PriceComponent)

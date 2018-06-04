@@ -3,6 +3,7 @@ import './styling/App.css';
 import PizzaSizeComponent from './components/PizzaSizeComponent'
 import SauceComponent from './components/SauceComponent'
 import ToppingsComponent from './components/ToppingsComponent'
+import PriceComponent from './components/PriceComponent'
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
        <PizzaSizeComponent/>
        <SauceComponent/>
        <ToppingsComponent/>
+       <PriceComponent/>
       </div>
     );
   }

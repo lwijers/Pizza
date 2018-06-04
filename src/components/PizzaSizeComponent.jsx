@@ -1,19 +1,60 @@
 import React, { Component } from 'react';
+import {eurofied} from '../globals' 
+import store from '../store'
+import { addPrice } from '../actions/index'
+import { connect } from 'react-redux'
+
+const pizzaSizes = [
+    {'20cm NY Style' : 645},
+    {'25cm NY Style' : 899},
+    {'30cm NY Style' : 1149},
+    {'35cm NY Style' : 1349}
+]
+
 
 class PizzaSizeComponent extends Component {
-  render() {
-    return (
-      <div className="pickToppings">
-        <p>select pizza size</p>
-        <select name="cars">
-            <option value="20cm ">20cm NY Style € 6,45</option>
-            <option value="25cm">25cm NY Style € 8,99</option>
-            <option value="30cm">30cm NY Style € 11,49</option>
-            <option value="35cm">35cm NY Style € 13,49</option>
-        </select>
-
-       </div>
-    );
+  constructor(props) {
+    super(props)
+    this.state = {
+        selectedItemName : '',
+        selectedItemPrice : 645
+      }
   }
-}
-export default PizzaSizeComponent;
+
+  handleChange(event) {
+    let pizzaPrice = 0
+    pizzaSizes.forEach(function(size) {
+   
+      if  (Object.keys(size)[0] === event.target.value) {
+        pizzaPrice =  Object.values(size)[0]
+      }    
+    });
+  this.setState({selectedItemPrice: pizzaPrice})
+  store.dispatch(addPrice({price: pizzaPrice}))  
+} 
+
+  render() {
+      return (
+        <form className="pizzaSizes">
+          <p>select pizza size</p>
+          <select name = " sizeMenu" onChange={this.handleChange.bind(this)}>
+            {pizzaSizes.map((pizzaSize) =>
+              <option 
+                value = {Object.keys(pizzaSize)[0]}     
+              >
+                {Object.keys(pizzaSize)[0]} 
+                &nbsp; &euro;
+                {eurofied(Object.values(pizzaSize)[0])}
+              </option>
+            )
+          }
+        </select>
+        <div className="subtotal">
+          price of selected item: {eurofied(this.state.selectedItemPrice)}
+        </div>
+      </form> 
+    )
+  }
+} 
+
+export default connect(null, { addPrice })(PizzaSizeComponent)
