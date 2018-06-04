@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {eurofied} from '../globals' 
+import {eurofied} from '../globals'
 import store from '../store'
-import { addPrice } from '../actions/index'
+import { basePrice } from '../actions/index'
 import { connect } from 'react-redux'
 
 const pizzaSizes = [
@@ -24,14 +24,13 @@ class PizzaSizeComponent extends Component {
   handleChange(event) {
     let pizzaPrice = 0
     pizzaSizes.forEach(function(size) {
-   
       if  (Object.keys(size)[0] === event.target.value) {
         pizzaPrice =  Object.values(size)[0]
-      }    
+      }
     });
   this.setState({selectedItemPrice: pizzaPrice})
-  store.dispatch(addPrice({price: pizzaPrice}))  
-} 
+  store.dispatch(basePrice({basePrice: pizzaPrice}))
+}
 
   render() {
       return (
@@ -39,10 +38,10 @@ class PizzaSizeComponent extends Component {
           <p>select pizza size</p>
           <select name = " sizeMenu" onChange={this.handleChange.bind(this)}>
             {pizzaSizes.map((pizzaSize) =>
-              <option 
-                value = {Object.keys(pizzaSize)[0]}     
+              <option
+                value = {Object.keys(pizzaSize)[0]}
               >
-                {Object.keys(pizzaSize)[0]} 
+                {Object.keys(pizzaSize)[0]}
                 &nbsp; &euro;
                 {eurofied(Object.values(pizzaSize)[0])}
               </option>
@@ -52,9 +51,9 @@ class PizzaSizeComponent extends Component {
         <div className="subtotal">
           price of selected item: {eurofied(this.state.selectedItemPrice)}
         </div>
-      </form> 
+      </form>
     )
   }
-} 
+}
 
-export default connect(null, { addPrice })(PizzaSizeComponent)
+export default connect(null, { basePrice })(PizzaSizeComponent)

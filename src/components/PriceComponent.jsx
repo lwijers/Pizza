@@ -7,18 +7,25 @@ class PriceComponent extends Component {
     super(props);
     this.state = {};
   }
-  render() {
 
+totalPrice(base, sauce, topping) {
+  return base + sauce + topping
+}
+
+  render() {
     return (
       <div className="price">
-        <p>your current Price = &euro;{eurofied(this.props.price)}</p>
+      {console.log(this.props)}
+        <p>your current Price = &euro;{eurofied(this.totalPrice(this.props.pizza.basePrice, this.props.pizza.saucePrice, this.props.pizza.toppingsPrice))}</p>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return {price : state.priceReducer}
+  return {
+    pizza : state.priceReducer,
+  }
 }
 
 export default connect(mapStateToProps)(PriceComponent)

@@ -1,8 +1,24 @@
-export const ADD_PRICE = "ADD_PRICE"
+export const BASE_PRICE = "BASE_PRICE"
+export const SAUCE_PRICE = "SAUCE_PRICE"
+export const TOPPINGS_PRICE = "TOPPINGS_PRICE"
 
-export const addPrice = (price) => {
-    return {
-        type: ADD_PRICE,
-        payload: price 
-    }
+export const basePrice = (basePrice) => {
+  return {
+    type: BASE_PRICE,
+    payload: basePrice
+  }
+}
+
+export const saucePrice = (saucePrice) => {
+  return {
+    type: SAUCE_PRICE,
+    payload: saucePrice
+  }
+}
+
+export const toppingsPrice = (toppingsPrice) => {
+  return {
+    type: TOPPINGS_PRICE,
+    payload: toppingsPrice
+  }
 }
