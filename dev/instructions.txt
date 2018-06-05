@@ -55,3 +55,8 @@ Additional instructions:
 5. We expect you to use [controlled form components](https://reactjs.org/docs/forms.html#controlled-components) as they are the best practise
 
 Bonus points if you use [Material-UI](https://material-ui-next.com) (v1)
+
+make mapstatetoprops use only info it needs
+make dumb and smart components
+make toppings enable
+

@@ -4,15 +4,17 @@ import PizzaSizeComponent from './components/PizzaSizeComponent'
 import SauceComponent from './components/SauceComponent'
 import ToppingsComponent from './components/ToppingsComponent'
 import PriceComponent from './components/PriceComponent'
+import DroneComponent from './components/DroneComponent'
 
 class App extends Component {
   render() {
     return (
-      <div className="ToppingsComponent">
-       <PizzaSizeComponent/>
-       <SauceComponent/>
-       <ToppingsComponent/>
-       <PriceComponent/>
+      <div className="pizzaApp">
+        <PizzaSizeComponent/>
+        <SauceComponent/>
+        <ToppingsComponent/>
+        <DroneComponent/>
+        <PriceComponent/>
       </div>
     );
   }

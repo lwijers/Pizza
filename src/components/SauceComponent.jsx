@@ -1,4 +1,4 @@
-import React, { Component, setState } from 'react';
+import React, { Component } from 'react';
 import {eurofied} from '../globals'
 import store from '../store'
 import { saucePrice } from '../actions/index'
@@ -16,8 +16,6 @@ class SauceComponent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        selectedItemName : '',
-        selectedItemPrice : 0
       }
     }
 
@@ -29,7 +27,7 @@ class SauceComponent extends Component {
           sauceCost =  Object.values(size)[0]
         }
       });
-    this.setState({selectedItemPrice: sauceCost})
+
     store.dispatch(saucePrice({saucePrice: sauceCost}))
   }
 
@@ -37,9 +35,9 @@ class SauceComponent extends Component {
 
   render() {
     return (
-      <form className="suaces">
-          <p>select pizza sauce</p>
-          <select name = " sauceMenu" onChange={this.handleChange.bind(this)}>
+      <form className="component">
+          <h3>select pizza sauce</h3>
+          <select className = "menu" onChange={this.handleChange.bind(this)}>
             {sauces.map((sauce) =>
               <option
                 value = {Object.keys(sauce)[0]}
@@ -52,10 +50,17 @@ class SauceComponent extends Component {
           }
         </select>
         <div className="subtotal">
-          price of selected item: {eurofied(this.state.selectedItemPrice)}
+          cost: {eurofied(this.props.saucePrice)}
         </div>
       </form>
     )
   }
 }
-export default connect(null, { saucePrice })(SauceComponent);
+
+const mapStateToProps = (state) => {
+  return {
+    saucePrice : state.priceReducer.saucePrice,
+  }
+}
+
+export default connect(mapStateToProps)(SauceComponent);

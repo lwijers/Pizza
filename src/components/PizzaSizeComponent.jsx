@@ -16,9 +16,7 @@ class PizzaSizeComponent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        selectedItemName : '',
-        selectedItemPrice : 645
-      }
+    }
   }
 
   handleChange(event) {
@@ -28,16 +26,18 @@ class PizzaSizeComponent extends Component {
         pizzaPrice =  Object.values(size)[0]
       }
     });
-  this.setState({selectedItemPrice: pizzaPrice})
   store.dispatch(basePrice({basePrice: pizzaPrice}))
 }
 
   render() {
       return (
-        <form className="pizzaSizes">
-          <p>select pizza size</p>
-          <select name = " sizeMenu" onChange={this.handleChange.bind(this)}>
+        <form className="component">
+
+          <h3>select pizza size</h3>
+        
+          <select className = "menu" onChange={this.handleChange.bind(this)}>
             {pizzaSizes.map((pizzaSize) =>
+        
               <option
                 value = {Object.keys(pizzaSize)[0]}
               >
@@ -49,11 +49,17 @@ class PizzaSizeComponent extends Component {
           }
         </select>
         <div className="subtotal">
-          price of selected item: {eurofied(this.state.selectedItemPrice)}
+          cost: {eurofied(this.props.basePrice)}
         </div>
       </form>
     )
   }
 }
 
-export default connect(null, { basePrice })(PizzaSizeComponent)
+const mapStateToProps = (state) => {
+  return {
+    basePrice : state.priceReducer.basePrice
+  }
+}
+
+export default connect(mapStateToProps)(PizzaSizeComponent)
